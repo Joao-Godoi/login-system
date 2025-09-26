@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        section {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #4a90e2;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        .error-message {
+            color: #d9534f;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        header, footer {
+            text-align: center;
+            margin: 20px 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+        a {
+            color: #4a90e2;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <section>
+        <h1>Registrar</h1>
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div>
+                <label>Username</label>
+                <input type="text" th:field="*{username}" placeholder="Digite seu username"/>
+            </div>
+            <div>
+                <label>Email</label>
+                <input type="email" th:field="*{email}" placeholder="Digite seu email"/>
+            </div>
+            <div>
+                <label>Senha</label>
+                <input type="password" th:field="*{password}" placeholder="Digite sua senha"/>
+            </div>
+            <div>
+                <label>Confirmar senha</label>
+                <input type="password" th:field="*{confirmPassword}" placeholder="Confirme sua senha"/>
+            </div>
+            <div>
+                <button type="submit">Registrar</button>
+            </div>
+        </form>
+
+        <div th:if="${error}" class="error-message">
+            <p th:text="${error}"></p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>Meu App © 2025 | <a th:href="@{/login}">Entrar</a></p>
+</footer>
+
+</body>
+</html>
